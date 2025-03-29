@@ -5,17 +5,18 @@ const ProfileSettings = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-8">
       
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">
-          Profile Settings
-        </h1>
-
-        <div className="mb-8 p-8">
-        <Link
+      <Link
         href="/dashboard"
         className="inline-flex items-center justify-center bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors shadow-lg hover:shadow-xl"
       >
         Go to Dashboard
       </Link>
+        <h1 className="text-3xl font-bold text-gray-800 mb-8 p-8">
+          Profile Settings
+        </h1>
+
+        <div className="mb-8 p-8">
+        
           <h2 className="text-xl font-semibold text-gray-700 mb-4">
             Profile Picture
           </h2>
