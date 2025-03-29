@@ -306,14 +306,14 @@ const UsersList = () => {
       </div>
       {isEditModalOpen && (
         <EditUserModal
-          user={currentUser}
+          user={currentUser!}
           onClose={handleCloseModal}
           onSave={handleSaveUser}
         />
         
 
       )}
-      {isViewModalOpen && <UserModal user={currentUser} onClose={handleCloseModal} />}
+      {isViewModalOpen && currentUser && <UserModal user={currentUser} onClose={handleCloseModal} />}
       
     </div>
   )
