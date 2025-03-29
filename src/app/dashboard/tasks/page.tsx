@@ -11,8 +11,9 @@ const Tasks = () => {
     status: "Pending" | "In Progress" | "Completed";
     dueDate: string;
   }
+  
   interface EditTaskModalProps {
-    task: Task
+    task: Task;
     onClose: () => void;
     onSave: (task: Task) => void
   }
@@ -88,7 +89,7 @@ const Tasks = () => {
             value={editedTask.description}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg"
-            rows="3"
+            
           />
         </div>
         
@@ -253,7 +254,7 @@ const handleSaveTask = (updatedTask : Task) => {
 
     {isModalOpen && (
       <EditTaskModal
-        task={currentTask}
+        task={currentTask!}
         onClose={() => setIsModalOpen(false)}
         onSave={handleSaveTask}
       />
