@@ -170,96 +170,96 @@ const handleSaveTask = (updatedTask : Task) => {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-8">
-    
-    <div className="max-w-7xl mx-auto bg-white rounded-lg shadow-sm p-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-4 md:p-8">
+  <div className="max-w-full md:max-w-7xl mx-auto bg-white rounded-lg shadow-sm p-6 md:p-8">
     <Link
       href="/dashboard"
-      className="inline-flex items-center justify-center bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors shadow-lg hover:shadow-xl"
+      className="inline-flex items-center justify-center bg-gray-800 text-white px-6 md:px-8 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors shadow-lg hover:shadow-xl"
     >
       Go to Dashboard
     </Link>
-      <h1 className="text-3xl font-bold text-gray-800 mb-8 p-8">Tasks</h1>
 
-      <div className="space-y-6">
-        {tasks.map((task) => (
-          <div
-            key={task.id}
-            className="flex items-center justify-between bg-white rounded-lg 
-            shadow-md p-6 border-l-4"
-            style={{
-              borderColor:
-                task.status === "Completed"
-                  ? "green"
-                  : task.status === "In Progress"
-                  ? "yellow"
-                  : "red",
-            }}
-          >
-            <div className="flex flex-col">
-              <h2 className="text-xl font-semibold text-gray-800">
-                {task.title}
-              </h2>
-              <p className="text-sm text-gray-600 mt-2">{task.description}</p>
-              <p className="text-sm text-gray-500 mt-2">
-                Due Date: {task.dueDate}
-              </p>
-            </div>
+    <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 md:mb-8 text-center md:text-left p-8">
+      Tasks
+    </h1>
 
-            <div className="flex space-x-4">
-              <span
-                className={`px-4 py-3 text-center text-sm rounded-full ${
-                  task.status === "Completed"
-                    ? "bg-green-100 text-green-600"
-                    : task.status === "In Progress"
-                    ? "bg-yellow-100 text-yellow-600"
-                    : "bg-red-100 text-red-600"
-                }`}
-              >
-                {task.status}
-              </span>
-
-              <button
-                className="px-4 py-2 text-white bg-blue-600
-               rounded-lg hover:bg-blue-700 transition-colors"
-                onClick={() => handleEditClick(task)}
-              >
-                Edit
-              </button>
-
-              {task.status !== "Completed" && (
-                <button
-                  className="px-4 py-2 text-white bg-green-600
-                 rounded-lg hover:bg-green-700 transition-colors"
-                  onClick={() => handleMarkComplete(task.id)}
-                >
-                  Mark as Complete
-                </button>
-              )}
-
-              <button
-                className={`px-4 py-2 text-white bg-red-600 rounded-lg transition-colors ${
-                  isDeleting ? "opacity-50 cursor-not-allowed" : "hover:bg-red-700"
-                }`}
-                onClick={() => handleDelete(task.id)}
-                disabled={isDeleting}
-              >
-                {isDeleting ? "Deleting..." : "Delete"}
-              </button>
-            </div>
+    <div className="space-y-4 md:space-y-6">
+      {tasks.map((task) => (
+        <div
+          key={task.id}
+          className="flex flex-col md:flex-row items-center md:items-start justify-between bg-white rounded-lg shadow-md p-4 md:p-6 border-l-4"
+          style={{
+            borderColor:
+              task.status === "Completed"
+                ? "green"
+                : task.status === "In Progress"
+                ? "yellow"
+                : "red",
+          }}
+        >
+          <div className="flex flex-col text-center md:text-left">
+            <h2 className="text-lg md:text-xl font-semibold text-gray-800">
+              {task.title}
+            </h2>
+            <p className="text-sm text-gray-600 mt-2">{task.description}</p>
+            <p className="text-sm text-gray-500 mt-2">
+              Due Date: {task.dueDate}
+            </p>
           </div>
-        ))}
-      </div>
-    </div>
 
-    {isModalOpen && (
-      <EditTaskModal
-        task={currentTask!}
-        onClose={() => setIsModalOpen(false)}
-        onSave={handleSaveTask}
-      />
-    )}
+          <div className="flex flex-wrap gap-2 md:gap-4 mt-4 md:mt-0">
+            <span
+              className={`px-3 py-2 text-center text-sm rounded-full ${
+                task.status === "Completed"
+                  ? "bg-green-100 text-green-600"
+                  : task.status === "In Progress"
+                  ? "bg-yellow-100 text-yellow-600"
+                  : "bg-red-100 text-red-600"
+              }`}
+            >
+              {task.status}
+            </span>
+
+            <button
+              className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
+              onClick={() => handleEditClick(task)}
+            >
+              Edit
+            </button>
+
+            {task.status !== "Completed" && (
+              <button
+                className="px-4 py-2 text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors"
+                onClick={() => handleMarkComplete(task.id)}
+              >
+                Mark as Complete
+              </button>
+            )}
+
+            <button
+              className={`px-4 py-2 text-white bg-red-600 rounded-lg transition-colors ${
+                isDeleting ? "opacity-50 cursor-not-allowed" : "hover:bg-red-700"
+              }`}
+              onClick={() => handleDelete(task.id)}
+              disabled={isDeleting}
+            >
+              {isDeleting ? "Deleting..." : "Delete"}
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
   </div>
+
+  {isModalOpen && (
+    <EditTaskModal
+      task={currentTask!}
+      onClose={() => setIsModalOpen(false)}
+      onSave={handleSaveTask}
+    />
+  )}
+</div>
+
   )
 }
 
